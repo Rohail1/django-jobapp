@@ -10,13 +10,14 @@
       <form method='POST'>
         {% csrf_token %}
         {% for field in form  %}
+        <br>
         <div class="subscribe_field">
           {{ field.errors }}
           {{field.label_tag}}
           {{ field }}
         </div>
         {% endfor %}
-
+        <br>
         <input type="submit" value="submit">
       </form>
     
