@@ -8,9 +8,15 @@ class Author(models.Model):
     company = models.CharField(max_length=200)
     designation = models.CharField(max_length=200)
 
+    def __str__(self) -> str:
+        return f'{self.name}'
+
 
 class Skill(models.Model):
     name = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return f'{self.name}'
 
 
 class Location(models.Model):
@@ -20,10 +26,17 @@ class Location(models.Model):
     country = models.CharField(max_length=200)
     zip = models.CharField(max_length=200)
 
+    def __str__(self) -> str:
+        return f'{self.city}'
+
 
 class JobPost(models.Model):
+    JOB_TYPE_CHOICES = [
+        ('Full Time', 'Full Time'),
+        ('Part Time', 'Part Time')
+    ]
     title = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+    description = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     expiry = models.DateField(null=True)
     salary = models.IntegerField()
@@ -32,6 +45,8 @@ class JobPost(models.Model):
         Location, null=True, on_delete=models.CASCADE)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     skills = models.ManyToManyField(Skill)
+    type = models.CharField(max_length=200, null=False,
+                            choices=JOB_TYPE_CHOICES)
 
     def __str__(self) -> str:
         return f'{self.title} with salary {self.salary}'

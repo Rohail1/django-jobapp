@@ -31,14 +31,14 @@ def job_details(request, id):
     try:
         if id == 0:
             return redirect(reverse('home-page'))
-        job = JobPost.objects.get(id=id)
+        job = JobPost.objects.get(slug=id)
+        print(job)
         context = {
-            'job_title': job.title,
-            'job_description': job.description,
-            'salary': job.salary
+            'job': job
         }
         return render(request, 'app/job_details.html', context)
-    except:
+    except Exception as ex:
+        print(ex)
         return HttpResponseNotFound("Not Found")
 
 
