@@ -1,0 +1,14 @@
+{%if is_authenticated%}
+  <h1>Hello {{name|capfirst}}</h1>
+{%else %}
+  <h1>Hello Mr User</h1>
+{% endif %}
+
+<h1> Your age is {{age}} </h1>
+<h1> length of list {{first_list|length}}</h1>
+{% for data in first_list%}
+  <h1> {{data}} </h1>
+{% endfor %}
+<h1> {{temp.x}} </h1>
+
+
