@@ -9,7 +9,7 @@ class Author(models.Model):
     designation = models.CharField(max_length=200)
 
 
-class Skills(models.Model):
+class Skill(models.Model):
     name = models.CharField(max_length=200)
 
 
@@ -31,7 +31,7 @@ class JobPost(models.Model):
     location = models.OneToOneField(
         Location, null=True, on_delete=models.CASCADE)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
-    skills = models.ManyToManyField(Skills)
+    skills = models.ManyToManyField(Skill)
 
     def __str__(self) -> str:
         return f'{self.title} with salary {self.salary}'
