@@ -3,20 +3,6 @@ from django.http import HttpResponseNotFound
 from django.urls import reverse
 from app.models import JobPost
 
-# Create your views here.
-
-job_title = [
-    "First Job",
-    "Second Job",
-    "Third Job"
-]
-
-job_description = [
-    "First job description",
-    "Second job description",
-    "Third job descriptions"
-]
-
 
 def job_list(request):
     job_list = JobPost.objects.all()
@@ -40,20 +26,3 @@ def job_details(request, id):
     except Exception as ex:
         print(ex)
         return HttpResponseNotFound("Not Found")
-
-
-class TempClass:
-    x = 34
-
-
-def hello(request):
-    first_list = ['alpha', 'beta']
-    temp = TempClass()
-    context = {
-        'name': "rohail",
-        'first_list': first_list,
-        'temp': temp,
-        'age': 29,
-        'is_authenticated': True
-    }
-    return render(request=request, template_name='app/hello.html', context=context)
